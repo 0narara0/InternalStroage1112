@@ -6,17 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/buttonWritePublicOutter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="FILE WRITE TO PUBLIC OUTTER"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+    <Button
+        android:id="@+id/buttonReadPublicOutter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="FILE READ FROM PUBLIC OUTTER"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
     <EditText
         android:id="@+id/editTextInput"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline9" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -37,22 +59,21 @@
 
     <Button
         android:id="@+id/buttonReadInner"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
         android:text="FILE READ FROM INNER"
         app:layout_constraintBottom_toTopOf="@+id/buttonWriteInner"
-        app:layout_constraintEnd_toStartOf="@+id/space"
-        app:layout_constraintStart_toStartOf="@+id/space" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline5" />
 
     <Button
         android:id="@+id/buttonWriteInner"
-        android:layout_width="wrap_content"
+        android:layout_width="266dp"
         android:layout_height="wrap_content"
         android:text="FILE WRITE TO INNER"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toEndOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/guideline3" />
 
     <android.support.constraint.Guideline
@@ -60,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="189dp" />
+        app:layout_constraintGuide_begin="175dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
@@ -69,49 +90,79 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="120dp" />
 
-    <Space
-        android:id="@+id/space"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextInput" />
+    <Button
+        android:id="@+id/buttonReadPrivateOutter"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:text="FILE READ FROM PRIVATE OUTTER"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWriteInner" />
 
     <Button
-        android:id="@+id/buttonReadOutter"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonWritePrivateOutter"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:text="FILE READ FROM OUTTER"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
-
-    <Button
-        android:id="@+id/buttonWriteOutter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="FILE WRITE TO OUTTER"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/buttonReadOutter" />
+        android:text="FILE WRITE TO PRIVATE OUTTER"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/guideline10" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="265dp" />
+        app:layout_constraintGuide_end="280dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="59dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="325dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="42dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="288dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="192dp" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="344dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="400dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="448dp" />
 
 </android.support.constraint.ConstraintLayout>
