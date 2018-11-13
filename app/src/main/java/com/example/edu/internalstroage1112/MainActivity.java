@@ -24,16 +24,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private final String INTERNAL_FILENAME = "Internal";
-    private final String EXTERNAL_FILENAME = "External";
+    private final String EXTERNAL_PRIVATE_FILENAME = "Private_External";
     private final String EXTERNAL_PUBLIC_FILENAME = "Public_External";
+    private final int REQUEST_CODE = 10;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode){
-            case 100:
-                if(grantResults.length>0||grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                    Log.e("","Permission has been granted by user");
+            case REQUEST_CODE:
+//                //강사님 코드
+//                if(grantResults.length>0||grantResults[0]==PackageManager.PERMISSION_GRANTED){
+//                    Log.e("","Permission has been granted by user");
+
+                   //반장쌤 코드
+                    if(grantResults.length==2 &&
+                            grantResults[0]==PackageManager.PERMISSION_GRANTED &&
+                            grantResults[1]==PackageManager.PERMISSION_GRANTED);{
+                    System.out.println("******* Permission has been granted by user");
                 }
         }
     }
@@ -47,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(permission!=PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE},100);
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_CODE);
         }
 
 
@@ -73,13 +81,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText editTextInput = findViewById(R.id.editTextInput);
         FileInputStream fileInputStream = null;
         FileOutputStream fileOutputStream = null;
-        File file = null;
+        File file, dir;
+        byte[] buffer = null;
 
         try {
         switch (v.getId()){
             case R.id.buttonReadInner:
                 fileInputStream = openFileInput(INTERNAL_FILENAME);
-                byte[] buffer = new byte[fileInputStream.available()];
+                buffer = new byte[fileInputStream.available()];
                 fileInputStream.read(buffer);
                 editTextInput.setText(new String(buffer));
                 fileInputStream.close();
@@ -93,16 +102,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonReadPrivateOutter:
-                file = new File(getExternalFilesDir(null),EXTERNAL_FILENAME);
+                file = new File(getExternalFilesDir(null),EXTERNAL_PRIVATE_FILENAME);
                 fileInputStream = new FileInputStream(file);
-                byte[] buffer1 = new byte[fileInputStream.available()];
-                fileInputStream.read(buffer1);
-                editTextInput.setText(new String(buffer1));
+                buffer = new byte[fileInputStream.available()];
+                fileInputStream.read(buffer);
+                editTextInput.setText(new String(buffer));
                 fileInputStream.close();
                 break;
 
             case R.id.buttonWritePrivateOutter:
-                file = new File(getExternalFilesDir(null),EXTERNAL_FILENAME);
+                file = new File(getExternalFilesDir(null),EXTERNAL_PRIVATE_FILENAME);
                 fileOutputStream = new FileOutputStream(file);
                 fileOutputStream.write(editTextInput.getText().toString().getBytes());
                 editTextInput.setText("");
@@ -110,17 +119,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonReadPublicOutter:
-                file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),EXTERNAL_PUBLIC_FILENAME);
+                dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+                file = new File(dir,EXTERNAL_PUBLIC_FILENAME);
+
                 fileInputStream = new FileInputStream(file);
-                byte[] buffer2 = new byte[fileInputStream.available()];
-                fileInputStream.read(buffer2);
-                editTextInput.setText(new String(buffer2));
+                buffer = new byte[fileInputStream.available()];
+                fileInputStream.read(buffer);
+                editTextInput.setText(new String(buffer));
                 fileInputStream.close();
                 break;
 
             case R.id.buttonWritePublicOutter:
 
-                file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),EXTERNAL_PUBLIC_FILENAME);
+                String state = Environment.getExternalStorageState();
+                System.out.println("*********************** state: "+ state);
+                if(state.equals(Environment.MEDIA_MOUNTED)==false) return;
+
+                dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+                if(!dir.exists()) dir.mkdirs();
+                System.out.println("********************** dir: "+dir);
+
+                file = new File(dir,EXTERNAL_PUBLIC_FILENAME);
                 fileOutputStream = new FileOutputStream(file);
                 fileOutputStream.write(editTextInput.getText().toString().getBytes());
                 editTextInput.setText("");
